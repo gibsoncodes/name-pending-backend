@@ -1,7 +1,7 @@
+const mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
-import mongoose from '../db/connection'
-
-const AuctionSchema = new mongoose.Schema(
+const AuctionSchema = new Schema(
     {
         isActive: {
             type: Boolean,

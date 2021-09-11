@@ -1,6 +1,7 @@
-import mongoose from '../db/connection'
+const mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
-const BidSchema = new mongoose.Schema(
+const BidSchema = new Schema(
     {
         user: {
             type: mongoose.Schema.Types.ObjectId,

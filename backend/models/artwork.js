@@ -1,11 +1,13 @@
-import mongoose from '../db/connection'
+const mongoose = require('../db/connection'),
+    Schema = mongoose.Schema;
 
-const ArtworkSchema = new mongoose.Schema(
+const ArtworkSchema = new Schema(
     {
         name: {
             type: String,
             required: true,
         },
+        pictures: [String],
         description: {
             type: String,
             required: true,
@@ -16,7 +18,11 @@ const ArtworkSchema = new mongoose.Schema(
         },
         startPrice: {
             type: Number,
-            require: true,
+            required: true,
+        },
+        isSold: {
+            type: Boolean,
+            default: false,
         }
     }
 )

@@ -10,6 +10,12 @@ router.get('/user', (req, res) => {
     res.send(req.user)
 })
 
+router.get('/user/logout', (req, res) => {
+    console.log(req.user)
+    req.logout()
+    res.status(201).send( "OK")
+})
+
 router.post('/user/new', (req, res) => {
     console.log(req.body)
     User.findOne({ username: req.body.username }, async (err, doc) => {

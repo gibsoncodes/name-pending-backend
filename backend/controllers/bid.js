@@ -25,3 +25,5 @@ router.post('/art/auction/bid', (req, res) => {
         .then(err => console.log(err))
     })
 })
+
+module.exports = router;

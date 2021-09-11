@@ -2,10 +2,12 @@ const express = require("express")
 const router = express.Router()
 const Artwork = require('../models/artwork')
 
-router.get('/art', (req, res) => {
+router.get('/art', (req, res) => {  
+    console.log("hi")
     Artwork.find({})
-    .then(art => art.json())
-    .then(res => res.send())
+    .then(art => {
+        res.send(art)
+    })
     .catch(err => console.error())
 })
 
