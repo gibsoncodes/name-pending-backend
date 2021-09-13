@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'),
+const mongoose = require('../db/connection'),
     Schema = mongoose.Schema;
 
 const AuctionSchema = new Schema(
@@ -9,15 +9,18 @@ const AuctionSchema = new Schema(
         },
         artwork: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'artwork'
+            ref: 'artwork',
         },
         time: {
+
             start: {
-                type: String,
+                type: Date,
                 required: true,
             },
+            
+            //Hours
             end: {
-                type: String,
+                type: Date,
                 required: true,
             }
         },
@@ -26,7 +29,8 @@ const AuctionSchema = new Schema(
             ref: 'artwork'
         }],
         currentMax: Number,
-    }
+    },
+    {timestamps: true}
 )
 
 

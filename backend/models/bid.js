@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'),
+const mongoose = require('../db/connection'),
     Schema = mongoose.Schema;
 
 const BidSchema = new Schema(
@@ -6,6 +6,11 @@ const BidSchema = new Schema(
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'user',
+            required: true,
+        },
+        auction: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'auction',
             required: true,
         },
         bidAmount: {

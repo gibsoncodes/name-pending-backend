@@ -18,9 +18,16 @@ router.get('/art/auction/bid/:id', (req, res) => {
 })
 
 router.post('/art/auction/bid', (req, res) => {
+    const auctionId = req.body.auctionId;
+    const user = User.find({username: req.user})
+    const newBid = {
+        user: user,
+        auction: auctionId,
+        bid: req.body.bid,
+    }
     Bid.create(req.body)
     .then((bid) => {
-        Auction.findByIdAndUpdate({_id: id}, {"$push": {bidHistory: bid}})
+        Auction.findByIdAndUpdate({_id: auctionId}, {"$push": {bidHistory: bid}})
         .then(() => res.redirect('/art/auction/bid'))
         .then(err => console.log(err))
     })
