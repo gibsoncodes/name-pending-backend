@@ -11,13 +11,11 @@ router.get('/user', (req, res) => {
 })
 
 router.get('/user/logout', (req, res) => {
-    console.log(req.user)
     req.logout()
     res.status(201).send( "OK")
 })
 
 router.post('/user/new', (req, res) => {
-    console.log(req.body)
     User.findOne({ username: req.body.username }, async (err, doc) => {
         if (err) throw err;
         if (doc) res.send("User Exists")
@@ -35,6 +33,7 @@ router.post('/user/new', (req, res) => {
 })
 
 router.post('/user/login', (req, res, next) => {
+    console.log(req.body)
     passport.authenticate("local", (err, user, info) => {
         if (err) throw err;
         if (!user) res.send("no User exists");
@@ -42,7 +41,6 @@ router.post('/user/login', (req, res, next) => {
             req.logIn(user, err => {
                 if (err) throw err;
                 res.send("successful authentication");
-                console.log(req.user)
             })
         }
     })(req, res, next)

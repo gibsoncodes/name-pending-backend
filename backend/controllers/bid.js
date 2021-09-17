@@ -1,35 +1,73 @@
 const express = require("express")
 const router = express.Router()
 const Bid = require('../models/bid')
+const User = require('../models/user')
+const Auction = require('../models/auction')
+const passport = require('passport')
+const isAuth = require('./auth').isAuth
 
-router.get('/art/auction/bid', (req, res) => {
-    Auction.find({isActive: true})
-    .then(art => art.json())
-    .then(res => res.send())
+router.get('/bids/active', isAuth, (req, res) => {
+    console.log(req.user)
+    Bid.find({username: req.user.username})
+    .then(bids => {
+        console.log(bids)
+        let passed = bids.filter(bid => Date.now() <= new Date(bid.expires))
+        res.send(passed)
+    })
     .catch(err => console.error())
 })
 
-router.get('/art/auction/bid/:id', (req, res) => {
+router.get('/bids/all', (req, res) => {
+    Bid.find({user: req.user.username})
+    .then(bids => res.send(bids))
+    .catch(err => console.error())
+})
+
+router.get('/bids/won', isAuth, (req, res) => {
+    Bid.find({user: req.user.username})
+    .then(bids => {
+        let passed = bids.filter(bid => Date.now() >= new Date(bid.expires))
+        res.send(passed)
+    })
+    .catch(err => console.error())
+})
+
+router.get('/bids/:id', isAuth, (req, res) => {
     const id = req.params.id
-    Auction.findById(id)
-    .then(art => art.json())
-    .then(res => res.send())
+    Bid.findById(id)
+    .then(bid => res.send(bid))
     .catch(err => console.error())
 })
 
-router.post('/art/auction/bid', (req, res) => {
+router.post('/bids', isAuth, (req, res) => {
     const auctionId = req.body.auctionId;
-    const user = User.find({username: req.user})
-    const newBid = {
-        user: user,
-        auction: auctionId,
-        bid: req.body.bid,
-    }
-    Bid.create(req.body)
-    .then((bid) => {
-        Auction.findByIdAndUpdate({_id: auctionId}, {"$push": {bidHistory: bid}})
-        .then(() => res.redirect('/art/auction/bid'))
-        .then(err => console.log(err))
+    User.findOne({username: req.user.username})
+    .then(user => {
+        const newBid = {
+            user: user._id,
+            username: user.username,
+            auction: auctionId,
+            bidAmount: req.body.bid,
+        }
+        Auction.findById({_id: auctionId})
+        .then((auction) => {
+            if (auction.currentMax + 1 <= newBid.bidAmount) {
+                Bid.create({...newBid, expires: auction.time.end})
+                .then((bid) => {
+                    (async () => {
+                        await auction.updateOne({$push: {bidHistory: bid}});
+                        await auction.updateOne({$set: {currentMax: bid.bidAmount}});
+                    })()
+                    .then(() => res.status(200).send())
+                })
+                .catch(err => res.status(404).send())
+            } else {
+                res.status(409).send()
+            }
+        })
+    })
+    .catch((err) => {
+        res.status(404).send("No User Found");
     })
 })
 

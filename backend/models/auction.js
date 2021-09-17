@@ -4,7 +4,8 @@ const mongoose = require('../db/connection'),
 const AuctionSchema = new Schema(
     {
         isActive: {
-            type: Boolean,
+            // 'upcoming', 'active', 'past'
+            type: String,
             required: true,
         },
         artwork: {
@@ -28,6 +29,13 @@ const AuctionSchema = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'artwork'
         }],
+        winner: {
+            winningId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'user'
+            },
+            username: String,
+        },
         currentMax: Number,
     },
     {timestamps: true}

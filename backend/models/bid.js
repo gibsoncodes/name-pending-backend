@@ -8,6 +8,10 @@ const BidSchema = new Schema(
             ref: 'user',
             required: true,
         },
+        username: {
+            type: String,
+            required: true,
+        },
         auction: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'auction',
@@ -16,6 +20,15 @@ const BidSchema = new Schema(
         bidAmount: {
             type: Number,
             required: true,
+        },
+        expires: {
+            type: Date,
+            required: true,
+        },
+        won: {
+            type: Boolean,
+            required: true,
+            default: false,
         }
     },
     {timestamps: true}

@@ -4,7 +4,7 @@
         "description": "gaft galiant and gooey",
         "materials": "archival pigma ink and sharpie on thick sketch pad",
         "startPrice": 5,
-        "pictures": ["../../public/images/art-tx73.png"]
+        "pictures": ["/images/art-tx73.png"]
     },
     {
         "name": "tx73",
@@ -18,7 +18,7 @@
         "description": "gaft galiant and gooey",
         "materials": "archival pigma ink and sharpie on thick sketch pad",
         "startPrice": 5,
-        "pictures": ["images/art-tx73.png"]
+        "pictures": ["/images/art-tx73.png"]
     },
     {
         "name": "tx73",
@@ -32,6 +32,6 @@
         "description": "gaft galiant and gooey",
         "materials": "archival pigma ink and sharpie on thick sketch pad",
         "startPrice": 5,
-        "pictures": ["/public/images/art-tx73.png"]
+        "pictures": ["/images/art-tx73.png"]
     }
 ]

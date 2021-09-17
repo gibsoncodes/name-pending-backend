@@ -3,7 +3,6 @@ const router = express.Router()
 const Artwork = require('../models/artwork')
 
 router.get('/art', (req, res) => {  
-    console.log("hi")
     Artwork.find({})
     .then(art => {
         res.send(art)
