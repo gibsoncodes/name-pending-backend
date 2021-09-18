@@ -17,6 +17,8 @@ router.get('/bids/active', isAuth, (req, res) => {
         console.log(curr)
         let passed = bids.filter(bid => {
             let end = new Date(bid.expires);
+            console.log(end)
+            
             end = end.getTime()
             return curr <= end;
         })
