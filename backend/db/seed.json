@@ -1,37 +1,51 @@
 [
     {
-        "name": "tx73",
-        "description": "gaft galiant and gooey",
+        "name": "filer",
+        "description": "gripping",
         "materials": "archival pigma ink and sharpie on thick sketch pad",
         "startPrice": 5,
-        "pictures": ["/images/art-tx73.png"]
+        "pictures": ["/images/filer.png"]
     },
     {
-        "name": "tx73",
-        "description": "gaft galiant and gooey",
+        "name": "dorr8",
+        "description": "a real gripper",
         "materials": "archival pigma ink and sharpie on thick sketch pad",
         "startPrice": 5,
-        "pictures": ["/images/art-tx73.png"]
+        "pictures": ["/images/dorr8.png"]
     },
     {
-        "name": "tx73",
-        "description": "gaft galiant and gooey",
+        "name": "chks90",
+        "description": "so gripped",
         "materials": "archival pigma ink and sharpie on thick sketch pad",
         "startPrice": 5,
-        "pictures": ["/images/art-tx73.png"]
+        "pictures": ["/images/chks90.png"]
     },
     {
-        "name": "tx73",
-        "description": "gaft galiant and gooey",
+        "name": "alsk12",
+        "description": "griP",
         "materials": "archival pigma ink and sharpie on thick sketch pad",
         "startPrice": 5,
-        "pictures": ["/images/art-tx73.png"]
+        "pictures": ["/images/alsk12.png"]
     },
     {
-        "name": "tx73",
-        "description": "gaft galiant and gooey",
+        "name": "tx76",
+        "description": "Love GA",
         "materials": "archival pigma ink and sharpie on thick sketch pad",
         "startPrice": 5,
-        "pictures": ["/images/art-tx73.png"]
+        "pictures": ["/images/tx76.png"]
+    },
+    {
+        "name": "spletig",
+        "description": "gaslighting ",
+        "materials": "archival pigma ink and sharpie on thick sketch pad",
+        "startPrice": 5,
+        "pictures": ["/images/spletig.png"]
+    },
+    {
+        "name": "98cx",
+        "description": "goldmine",
+        "materials": "archival pigma ink and sharpie on thick sketch pad",
+        "startPrice": 5,
+        "pictures": ["/images/98cx.png"]
     }
 ]
