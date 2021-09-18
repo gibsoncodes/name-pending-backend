@@ -17,6 +17,7 @@ const UserSchema = new Schema(
             type: String,
             required: true,
         },
+        notifications: [{message: String, seen: Boolean}]
     }
 )
 
