@@ -1,6 +1,8 @@
 const User = require('./models/user');
 const bcrypt = require('bcryptjs');
 const localStrategy = require('passport-local').Strategy;
+require('dotenv').config()
+
 
 module.exports = function(passport) {
 
@@ -27,8 +29,10 @@ module.exports = function(passport) {
 
     passport.deserializeUser((id, cb) => {
         User.findOne({ _id: id }, (err, user) => {
+            const admin = user.username === process.env.ADMIN_USER;
             const userInfo = {
                 username: user.username,
+                admin: admin,
                 notifications: user.notifications,
             }
             cb(err, userInfo);
