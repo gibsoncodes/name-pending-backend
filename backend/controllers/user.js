@@ -7,8 +7,11 @@ const User = require('../models/user');
 
 
 router.get('/user', (req, res) => {
-    console.log(req.user)
-    res.send(req.user)
+    if (req.user.username === process.env.ADMIN_USER) {
+        res.send({user: req.user, admin: true})
+    } else {
+        res.send({user: req.user, admin: false})
+    }
 })
 
 router.get('/user/logout', (req, res) => {
