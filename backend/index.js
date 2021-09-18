@@ -23,9 +23,7 @@ app.use(cors({
 
 app.use(session(({
     maxAge: 60 * 1000 * 60,
-    secret: "secretcode",
-    resave: true,
-    saveUninitialized: true,
+    keys: ["xmkasdnk"],
 })));
 
 app.use(express.static(path.join(__dirname, 'public')))
