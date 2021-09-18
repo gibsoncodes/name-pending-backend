@@ -11,7 +11,7 @@ router.get('/bids/active', isAuth, (req, res) => {
     Bid.find({username: req.user.username})
     .then(bids => {
         console.log(bids)
-        let curr = new Date.now()
+        let curr = Date.now()
         console.log(curr)
         curr = curr.getTime()
         console.log(curr)
