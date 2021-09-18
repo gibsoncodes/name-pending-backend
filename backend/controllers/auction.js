@@ -24,6 +24,7 @@ router.get('/auctions/active', (req, res) => {
     .then(auctions => {
         let passed = [];
         auctions.forEach(auc => {
+            console.log(auc)
             if (auc.isActive === 'active') {
                 passed.push(auc);
             } else{
