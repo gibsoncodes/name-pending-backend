@@ -2,6 +2,7 @@ const express = require("express")
 const Artwork = require("../models/artwork")
 const router = express.Router()
 const Auction = require('../models/auction')
+const User = require('../models/user')
 const isAdmin = require('./auth').isAdmin;
 
 router.get('/auctions/upcoming', (req, res) => {
@@ -58,13 +59,18 @@ router.get('/art/auctions/:id/end', (req, res) => {
     Auction.findById(id)
     .then(auc => {
         let lastBid = auc.bidHistory[bidHistory.length - 1]
-        auc.updateOne({$set: {'winner.winningId': lastBid.user, 'winner.username': lastBid.username}})
-        // further functionality, email, etc
-
-        Bid.find({_id: lastBid._id})
-        .then(bid => {
-            bid.updateOne({$set: {won: true}})
-        })
+        (async () => {
+            auc.updateOne({$set: {'winner.winningId': lastBid.user, 'winner.username': lastBid.username}})
+            Bid.find({_id: lastBid._id})
+            .then(bid => {
+                const notifObj = {
+                    message: `You've won the auction for the incredible piece ${auc.artwork.name}`,
+                    seen: false,
+                };
+                bid.updateOne({$set: {won: true}})
+                User.findOneAndUpdate({username: bid.username}, {$push: {notifications: notifObj}})
+            })
+        })()
     })
     .catch(err => console.error())
 })
