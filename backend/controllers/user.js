@@ -7,6 +7,7 @@ const User = require('../models/user');
 
 
 router.get('/user', (req, res) => {
+    console.log(req.user)
     res.send(req.user)
 })
 
