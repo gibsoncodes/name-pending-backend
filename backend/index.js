@@ -18,7 +18,7 @@ const bidController = require('./controllers/bid')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "https://gibsoncodes.github.io/name-in-progress/",
     credentials: true,
 }));
 
