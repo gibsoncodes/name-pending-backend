@@ -10,17 +10,14 @@ router.get('/bids/active', isAuth, (req, res) => {
     console.log(req.user)
     Bid.find({username: req.user.username})
     .then(bids => {
-        console.log(bids)
-        let curr = Date.now()
-        console.log(curr)
-        curr = curr.getTime()
-        console.log(curr)
+        let curr = Date.now();
+        curr = curr.getTime();
         let passed = bids.filter(bid => {
             let end = Date(bid.expires);
-            console.log(end)
-            end = end.getTime()
+            console.log(end);
+            end = end.getTime();
             return curr <= end;
-        })
+        });
         res.send(passed)
     })
     .catch(err => console.error())
