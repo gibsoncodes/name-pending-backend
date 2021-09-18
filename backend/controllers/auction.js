@@ -76,7 +76,7 @@ router.get('/art/auctions/:id/end', (req, res) => {
 })
 
 router.post('/auctions', isAdmin, (req, res) => {
-    Artwork.findOne({id: req.body.artwork})
+    Artwork.findById({_id: req.body.artwork})
     .then(artwork => {
         let endDate = new Date(req.body.time.start)
         let duration = parseInt(req.body.time.duration)
