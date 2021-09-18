@@ -19,11 +19,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
     origin: "https://gibsoncodes.github.io",
-    credentials: true
+    credentials: true,
 }));
 
 app.use(session(({
     name: 'session',
+    sameSite: 'none',
     maxAge: 60 * 1000 * 60,
     keys: ["xmkasdnk"],
 })));
