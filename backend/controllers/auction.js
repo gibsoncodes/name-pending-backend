@@ -79,8 +79,11 @@ router.post('/auctions', isAdmin, (req, res) => {
     Artwork.findById({_id: req.body.artwork})
     .then(artwork => {
         let endDate = new Date(req.body.time.start)
+        console.log(endDate)
         let duration = parseInt(req.body.time.duration)
+        console.log(duration)
         endDate.setHours(endDate.getHours() + duration)
+        console.log(endDate)
         const newAuction = {
             isActive: 'upcoming',
             artwork: {id: artwork.id, name: artwork.name},
