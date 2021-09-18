@@ -27,7 +27,7 @@ const AuctionSchema = new Schema(
         },
         bidHistory: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'artwork'
+            ref: 'bid'
         }],
         winner: {
             winningId: {

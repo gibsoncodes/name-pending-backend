@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const Artwork = require('../models/artwork')
+const { isAdmin } = require("./auth")
 
 router.get('/art', (req, res) => {  
     Artwork.find({})
@@ -18,7 +19,7 @@ router.get('/art/:id', (req, res) => {
     .catch(err => console.error())
 })
 
-router.post('/art', (req, res) => {
+router.post('/art', isAdmin, (req, res) => {
     Artwork.create(req.body)
     .then(() => res.redirect('/art'))
     .catch(err => console.error())

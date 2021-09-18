@@ -24,10 +24,9 @@ router.get('/bids/all', (req, res) => {
 })
 
 router.get('/bids/won', isAuth, (req, res) => {
-    Bid.find({user: req.user.username})
+    Bid.find({user: req.user.username}, {won: true})
     .then(bids => {
-        let passed = bids.filter(bid => Date.now() >= new Date(bid.expires))
-        res.send(passed)
+        res.send(bids)
     })
     .catch(err => console.error())
 })

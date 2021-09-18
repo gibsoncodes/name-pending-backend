@@ -1,6 +1,8 @@
 const mongoose = require("mongoose")
+require('dotenv').config()
+const DB_CREDENTIALS = process.env.DB_CREDENTIALS
 
-const mongoURI = "mongodb+srv://gibsoncodes:D3xtroverse@cluster0.ok0qo.mongodb.net/testingArt?retryWrites=true&w=majority"
+const mongoURI = `mongodb+srv://${DB_CREDENTIALS}@cluster0.ok0qo.mongodb.net/testingArt?retryWrites=true&w=majority`;
 
 mongoose
     .connect(mongoURI,
