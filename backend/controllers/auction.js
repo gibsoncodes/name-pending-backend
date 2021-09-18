@@ -19,7 +19,6 @@ router.get('/auctions/upcoming', (req, res) => {
 })
 
 router.get('/auctions/active', (req, res) => {
-    console.log("herro")
     Auction.find({})
     .then(auctions => {
         let passed = [];
@@ -78,7 +77,7 @@ router.post('/auctions', isAdmin, (req, res) => {
         endDate.setHours(endDate.getHours() + duration)
         const newAuction = {
             isActive: 'upcoming',
-            artwork: artwork.id,
+            artwork: {id: artwork.id, name: artwork.name},
             time: {
                 start: req.body.time.start,
                 end: endDate,

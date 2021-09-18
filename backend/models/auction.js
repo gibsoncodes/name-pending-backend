@@ -9,8 +9,11 @@ const AuctionSchema = new Schema(
             required: true,
         },
         artwork: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'artwork',
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'artwork',
+            },
+            name: String,
         },
         time: {
 
