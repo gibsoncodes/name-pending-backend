@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require("cookie-parser");
 const session = require('cookie-session');
+const pcookie = require('passport-cookie')
 const passport = require('passport');
 const path = require('path')
 const passportLocal = require("passport-local").Strategy;
@@ -22,6 +23,7 @@ app.use(cors({
 }));
 
 app.use(session(({
+    name: 'session',
     maxAge: 60 * 1000 * 60,
     keys: ["xmkasdnk"],
 })));
@@ -37,6 +39,11 @@ app.use(artController)
 app.use(auctionController)
 app.use(bidController)
 
+app.set('trust proxy', 1)
+
+app.get('/', (req, res) => {
+    res.send('hi')
+})
 
 
 app.listen(process.env.PORT, () => console.log("dub"))
