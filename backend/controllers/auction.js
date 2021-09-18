@@ -22,9 +22,8 @@ router.get('/auctions/upcoming', (req, res) => {
 router.get('/auctions/active', (req, res) => {
     Auction.find({})
     .then(auctions => {
-        console.log(auctions)
         let passed = [];
-        Array.of(auctions).forEach(auc => {
+        auctions.forEach(auc => {
             console.log(auc)
             if (auc.isActive === 'active') {
                 passed.push(auc);

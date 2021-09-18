@@ -12,7 +12,6 @@ router.get('/user', (req, res) => {
 
 router.get('/user/logout', (req, res) => {
     req.logout()
-    res.cookie('first-cookie', 'good')
     res.status(201).send( "OK")
 })
 
