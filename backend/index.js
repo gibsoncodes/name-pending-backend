@@ -40,6 +40,6 @@ app.use(bidController)
 
 
 
-app.listen(4000, () => console.log("dub"))
+app.listen(process.env.PORT, () => console.log("dub"))
 
 
