@@ -22,6 +22,7 @@ router.get('/auctions/upcoming', (req, res) => {
 router.get('/auctions/active', (req, res) => {
     Auction.find({})
     .then(auctions => {
+        console.log(auctions)
         let passed = [];
         auctions.forEach(auc => {
             console.log(auc)
