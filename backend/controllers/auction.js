@@ -26,11 +26,16 @@ router.get('/auctions/active', (req, res) => {
         auctions.forEach(auc => {
             if (auc.isActive === 'active') {
                 passed.push(auc);
-            } else {
+            } else{
                 let start = new Date(auc.time.start);
+                let end = new Date(auc.time.end)
                 if (start < Date.now()) {
                     passed.push(auc);
                     auc.updateOne({$set: {isActive: 'active'}})
+                } else if (end < Date.now()) {
+                    console.log("hit")
+                    auc.updateOne({$set: {isActive: 'past'}})
+                    endAuction(auc._id)
                 }
             }
         })
@@ -54,8 +59,8 @@ router.get('/art/auctions/:id', (req, res) => {
     .catch(err => console.error())
 })
 
-router.get('/art/auctions/:id/end', (req, res) => {
-    const id = req.params.id
+function endAuction(id) {
+    console.log("heree4")
     Auction.findById(id)
     .then(auc => {
         let lastBid = auc.bidHistory[bidHistory.length - 1]
@@ -73,7 +78,7 @@ router.get('/art/auctions/:id/end', (req, res) => {
         })()
     })
     .catch(err => console.error())
-})
+}
 
 router.post('/auctions', isAdmin, (req, res) => {
     Artwork.findById({_id: req.body.artwork})
