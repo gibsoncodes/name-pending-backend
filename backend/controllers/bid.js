@@ -10,13 +10,13 @@ router.get('/bids/active', isAuth, (req, res) => {
     console.log(req.user)
     Bid.find({username: req.user.username})
     .then(bids => {
-        let curr = Date.now();
-        curr = curr.getTime();
-        let passed = bids.filter(bid => {
-            console.log("kasdokajs")
-            return curr <= end;
-        });
-        res.send(passed)
+        // let curr = Date.now();
+        // curr = curr.getTime();
+        // let passed = bids.filter(bid => {
+        //     console.log("kasdokajs")
+        //     return curr <= end;
+        // });
+        res.send(bids)
     })
     .catch(err => console.error())
 })
