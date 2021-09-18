@@ -17,11 +17,12 @@ const bidController = require('./controllers/bid')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://gibsoncodes.github.io/',
     credentials: true
 }));
 
 app.use(session(({
+    maxAge: 60 * 1000 * 60,
     secret: "secretcode",
     resave: true,
     saveUninitialized: true,
